@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.xhhold.plugin.player.MediaPlayer</id>
     <name>MediaController</name>
-    <vendor email="xiaohuihuiold@gmail.com" url="https://xhhold.com">xiaohuihuiold</vendor>
+    <vendor email="xiaohuihuiold@gmail.com" url="https://blog.xhhold.com">xiaohuihuiold</vendor>
 
     <description><![CDATA[
     Music controller..........................................

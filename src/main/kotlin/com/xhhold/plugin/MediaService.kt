@@ -48,7 +48,7 @@ class MediaService {
 
     }
 
-    private fun onPlayersChanged(player: MutableList<MediaPlayer>) {
+    private fun onPlayersChanged(players: MutableList<MediaPlayer>) {
 
     }
 

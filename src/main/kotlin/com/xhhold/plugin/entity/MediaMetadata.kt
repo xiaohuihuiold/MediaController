@@ -1,11 +1,10 @@
 package com.xhhold.plugin.entity
 
 data class MediaMetadata(
-    val title: String?,
-    val album: String?,
-    val artUrl: String?,
-    val artist: String?,
-    val duration: Long?,
-    val position: Long?,
-    val updateTime: Long?,
+    val title: String? = null,
+    val album: String? = null,
+    val artUrl: String? = null,
+    val artists: MutableList<String>? = null,
+    val duration: Long? = null,
+    val updateTime: Long? = null,
 )

@@ -10,13 +10,18 @@ typealias OnPlayerChanged = ValueChanged<MediaPlayer>
 typealias OnPlayersChanged = ValueChanged<MutableList<MediaPlayer>>
 
 abstract class MediaPlayerService {
+    @Volatile
     var connected: Boolean = false
         protected set
 
-    private var onConnected: OnConnected? = null
-    private var onDisconnected: OnDisconnected? = null
-    private var onPlayerChanged: OnPlayerChanged? = null
-    private var onPlayersChanged: OnPlayersChanged? = null
+    protected var onConnected: OnConnected? = null
+        private set
+    protected var onDisconnected: OnDisconnected? = null
+        private set
+    protected var onPlayerChanged: OnPlayerChanged? = null
+        private set
+    protected var onPlayersChanged: OnPlayersChanged? = null
+        private set
 
     fun setOnConnected(onConnected: OnConnected?) {
         this.onConnected = onConnected
