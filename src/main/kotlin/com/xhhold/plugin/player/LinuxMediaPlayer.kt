@@ -7,8 +7,18 @@ import com.xhhold.plugin.entity.PlayerProperties
 import com.xhhold.plugin.service.LinuxMediaPlayerService
 import com.xhhold.plugin.service.OnPlayerChanged
 import org.freedesktop.dbus.DBusMap
+import org.freedesktop.dbus.annotations.DBusInterfaceName
+import org.freedesktop.dbus.interfaces.DBusInterface
 import org.freedesktop.dbus.interfaces.Properties
 import org.freedesktop.dbus.types.Variant
+
+@DBusInterfaceName(LinuxMediaPlayerService.MPRIS2_PLAYER_INTERFACE)
+interface LinuxMediaPlayerController : DBusInterface {
+    fun Play()
+    fun Pause()
+    fun Previous()
+    fun Next()
+}
 
 class LinuxMediaPlayer(
     private val playerService: LinuxMediaPlayerService,
@@ -18,9 +28,18 @@ class LinuxMediaPlayer(
 ) :
     MediaPlayer(playerProperties) {
 
+    private val controller by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+        playerService.dBusConnection?.getRemoteObject(
+            playerProperties.id,
+            LinuxMediaPlayerService.MPRIS2_PATH,
+            LinuxMediaPlayerController::class.java
+        )
+    }
+
     init {
         runCatching {
             playerService.dBusConnection?.apply {
+                getRemoteObject(playerProperties.id, LinuxMediaPlayerService.MPRIS2_PATH)
                 addSigHandler(Properties.PropertiesChanged::class.java, busName) {
                     onPropertiesChanged(it.propertiesChanged)
                 }
@@ -47,6 +66,23 @@ class LinuxMediaPlayer(
         thisLogger().error(it)
     }
 
+    override fun play() {
+        controller?.Play()
+    }
+
+    override fun pause() {
+        controller?.Pause()
+    }
+
+    override fun previous() {
+        controller?.Previous()
+    }
+
+    override fun next() {
+        controller?.Next()
+    }
+
+    fun close() {}
 
     private fun onPropertiesChanged(properties: Map<String, Variant<*>>) = runCatching {
 
@@ -133,7 +169,5 @@ class LinuxMediaPlayer(
     }.onFailure { err ->
         thisLogger().error(err)
     }
-
-    fun close() {}
 
 }
