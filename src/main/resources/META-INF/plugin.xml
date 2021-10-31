@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>com.xhhold.plugin.player.MediaPlayer</id>
+    <name>MediaController</name>
+    <vendor email="xiaohuihuiold@gmail.com" url="https://xhhold.com">xiaohuihuiold</vendor>
+
+    <description><![CDATA[
+    Music controller..........................................
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <applicationListeners>
+        <listener class="com.xhhold.plugin.ProjectOpenCloseListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </applicationListeners>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.xhhold.plugin.MediaService"/>
+    </extensions>
+
+    <actions>
+    </actions>
+</idea-plugin>

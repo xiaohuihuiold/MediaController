@@ -1,0 +1,12 @@
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+build/
+# gradle
+gradle-wrapper.jar
+.gradle/
+gradlew
+gradlew.bat
+local.properties
