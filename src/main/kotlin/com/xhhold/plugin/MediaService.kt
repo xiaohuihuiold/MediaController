@@ -22,6 +22,8 @@ class MediaService {
         var service: MediaPlayerService? = null
         if (SystemInfo.isLinux) {
             service = LinuxMediaPlayerService()
+        } else if (SystemInfo.isWindows) {
+            service = WindowsMediaPlayerService()
         }
         service?.setOnConnected { onConnected() }
         service?.setOnDisconnected { onDisconnected() }

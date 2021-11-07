@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 include(CTest)
 enable_testing()
 
-add_library(winrt_media_session_manager SHARED media_session_manager.cpp pch.c)
+add_library(winrt_media_session_manager SHARED media_session_manager.cpp pch.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
