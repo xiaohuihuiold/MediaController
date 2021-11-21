@@ -11,6 +11,14 @@ void refreshSessions();
 
 void refreshSession(JNIEnv *, jobject, jstring);
 
+void play(JNIEnv *, jobject, jstring);
+
+void pause(JNIEnv *, jobject, jstring);
+
+void skipToPrevious(JNIEnv *, jobject, jstring);
+
+void skipToNext(JNIEnv *, jobject, jstring);
+
 void updateSessions(const GlobalSystemMediaTransportControlsSessionManager &);
 
 void updateSession(const GlobalSystemMediaTransportControlsSession &);
@@ -20,3 +28,6 @@ void onMediaPropertiesChanged(const GlobalSystemMediaTransportControlsSession &,
 
 void onPlaybackInfoChanged(const GlobalSystemMediaTransportControlsSession &,
                            const PlaybackInfoChangedEventArgs &);
+
+void onSessionsChanged(const GlobalSystemMediaTransportControlsSessionManager &,
+                       const SessionsChangedEventArgs &);

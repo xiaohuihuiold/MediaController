@@ -1,7 +1,6 @@
 package com.xhhold.plugin
 
 import com.intellij.ide.ActivityTracker
-import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.util.SystemInfo
 import com.xhhold.plugin.player.MediaPlayer
 import com.xhhold.plugin.service.*
@@ -84,12 +83,12 @@ class MediaService {
         selectedPlayer?.pause()
     }
 
-    fun previous() {
-        selectedPlayer?.previous()
+    fun skipToPrevious() {
+        selectedPlayer?.skipToPrevious()
     }
 
-    fun next() {
-        selectedPlayer?.next()
+    fun skipToNext() {
+        selectedPlayer?.skipToNext()
     }
 
 }

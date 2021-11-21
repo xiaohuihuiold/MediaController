@@ -1,5 +1,6 @@
 package com.xhhold.plugin
 
+import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.util.SystemInfo
 import com.xhhold.plugin.service.ValueChanged
 
@@ -10,8 +11,12 @@ object WinRTMediaSessionManager {
     private val sessions = mutableMapOf<String, MediaSession?>()
 
     init {
-        if (SystemInfo.isWindows) {
-            System.load("F:\\idea\\MediaController\\winrt_media_session_manager\\build\\Debug\\winrt_media_session_manager.dll")
+        runCatching {
+            if (SystemInfo.isWindows) {
+                System.load("F:\\idea\\MediaController\\wmsm\\cmake-build-debug\\wmsm.dll")
+            }
+        }.onFailure {
+            thisLogger().error(it)
         }
     }
 
@@ -19,8 +24,20 @@ object WinRTMediaSessionManager {
 
     external fun refreshSession(id: String)
 
+    external fun play(id: String)
+
+    external fun pause(id: String)
+
+    external fun skipToPrevious(id: String)
+
+    external fun skipToNext(id: String)
+
     fun listenSessions(onSessionsChanged: ValueChanged<Array<String>>?) {
         this.onSessionsChanged = onSessionsChanged
+    }
+
+    fun listenSession(onSessionChanged: ValueChanged<MediaSession>?) {
+        this.onSessionChanged = onSessionChanged
     }
 
     @JvmStatic
@@ -34,13 +51,16 @@ object WinRTMediaSessionManager {
 
     @JvmStatic
     fun onSession(id: String, title: String, artist: String, album: String, playStatus: Int) {
-        if (!sessions.containsKey(id)) {
-            return
-        }
         val session = MediaSession(id, title, artist, album, playStatus)
         onSessionChanged?.invoke(session)
     }
 
-    class MediaSession(id: String, title: String, artist: String, album: String, playStatus: Int) {
+    class MediaSession(
+        val id: String,
+        val title: String,
+        val artist: String,
+        val album: String,
+        val playStatus: Int
+    ) {
     }
 }

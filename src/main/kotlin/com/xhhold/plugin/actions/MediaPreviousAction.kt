@@ -7,7 +7,7 @@ import com.xhhold.plugin.MediaService
 
 class MediaPreviousAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
-        service<MediaService>().previous()
+        service<MediaService>().skipToPrevious()
     }
 
     override fun update(e: AnActionEvent) {

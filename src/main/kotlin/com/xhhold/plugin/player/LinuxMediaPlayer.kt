@@ -74,11 +74,11 @@ class LinuxMediaPlayer(
         controller?.Pause()
     }
 
-    override fun previous() {
+    override fun skipToPrevious() {
         controller?.Previous()
     }
 
-    override fun next() {
+    override fun skipToNext() {
         controller?.Next()
     }
 

@@ -19,11 +19,6 @@
     </extensions>
 
     <actions>
-        <action id="MediaPlayerSelector"
-                class="com.xhhold.plugin.actions.MediaPlayerSelectorAction"
-                text="None">
-            <add-to-group group-id="NavBarToolBar" anchor="first"/>
-        </action>
         <action id="MediaNext"
                 class="com.xhhold.plugin.actions.MediaNextAction"
                 text="Go Next"
@@ -52,6 +47,11 @@
         <action id="MediaArt"
                 class="com.xhhold.plugin.actions.MediaArtAction"
                 icon="AllIcons.Ide.LocalScopeAction">
+            <add-to-group group-id="NavBarToolBar" anchor="first"/>
+        </action>
+        <action id="MediaPlayerSelector"
+                class="com.xhhold.plugin.actions.MediaPlayerSelectorAction"
+                text="None">
             <add-to-group group-id="NavBarToolBar" anchor="first"/>
         </action>
     </actions>
